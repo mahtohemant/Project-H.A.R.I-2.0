@@ -1,39 +1,298 @@
-An agriculture Robot That's an impressive project! Hari is a fantastic example of applying space-exploration engineering (Rocker-Bogie) and cutting-edge AI (Edge Impulse, offline CNN) to a down-to-earth problem like precision agriculture.
+🌱🤖 HARI – An Intelligent Agricultural Robot
 
-Here is a structured, comprehensive README file for Project "Hari," designed to be clear, professional, and suitable for sharing in academic, professional, or open-source contexts.
+Precision Farming | Edge AI | Autonomous Robotics | Rocker-Bogie Rover
 
-🤖 Project Hari: An Autonomous Agricultural Robotics Platform 🌱 Hari is an intelligent, ruggedized agricultural robot designed to bring precision farming and AI-enabled diagnostics directly to the field. Leveraging a robust Rocker-Bogie suspension system and edge-based machine learning, Hari provides real-time, offline plant health monitoring and environmental data collection to assist farmers in optimizing yield and resource management.
+📌 Overview
 
-🌟 Features & Capabilities Offline Plant Disease Detection: Utilizes a custom CNN model trained via Edge Impulse and deployed on an ESP32-CAM to perform real-time, field-side classification of plant diseases without cloud dependency.
+HARI is an AI-powered agricultural robot designed to make farming more efficient, intelligent, and sustainable. Built by a three–member multidisciplinary team, the project integrates embedded systems, robotics, mechanical engineering, and machine learning into a rugged ground robot capable of navigating uneven terrains and providing real-time agronomic insights.
 
-Rugged Mobility: Employs a Rocker-Bogie Suspension system (the same principle used by NASA's Mars rovers) for exceptional stability, high traction, and smooth obstacle traversal on uneven agricultural terrain. Real-Time Telemetry: An ESP32 DevKit hosts a local HTTP server to display sensor data and system status on a dedicated web dashboard, providing immediate insights to the user.
+This repository contains the core code modules used in the HARI robot—robot arm control, real-time sensor monitoring, and edge-based plant disease detection workflows.
 
-Multi-Sensor Data Acquisition: Collects critical environmental and soil data through an integrated sensor suite. Hardware & Software Architecture Component Function Central Controller ESP32 DevKit Vision/AI Processor ESP32-CAM Motor & Drive System 6-Wheel Drive with Rocker-Bogie Linkage Environmental Sensor DHT11 (Temperature & Humidity) Atmospheric Sensor BMP180 (Atmospheric Pressure & Temperature) Soil Sensor Soil Moisture Sensor Precipitation Sensor Rain Sensor Power System Dedicated Power and Battery Management System Software & Technology Stack AI/ML: Custom CNN Model for plant disease detection.
+> 🚀 HARI reached the final round of the Accenture Innovation Challenge 2024 (Sandbox Round)
+Due to academic commitments, the team could not attend the finale in Chennai.
 
-Edge ML Platform: Edge Impulse for model training and deployment.
 
-Core Logic: Embedded C/C++ (on ESP32).
+👥 Team Hari
 
-Communication: Local HTTP Server for telemetry dashboard. Engineering Highlights Rocker-Bogie Suspension The Rocker-Bogie design was chosen specifically for its passive stability. It articulates without the need for springs or complex dampers, allowing all six wheels to remain in contact with the ground even over large obstacles, which is crucial for maintaining stability for the onboard sensors and AI camera.
+Member	Contribution
 
-AI at the Edge The decision to run the disease detection model completely offline was a critical design choice, ensuring reliability in remote farming areas with limited to no internet connectivity.
+Hemant Kumar Mahto	Hardware architecture, chassis design, mechanical integration, system assembly
+Sanchay Kumar	Embedded software development, AI/ML integration, robot arm programming, systems software
+Mohit Pal	Power systems, battery module design, field endurance engineering
 
-👥 Team Hari Hari was developed by a small, passionate, and multidisciplinary team:
+🌟 Features at a Glance
 
-Hemant kumar Mahto: Hardware Architecture, Mechanical Integration, System Assembly.
+AI-driven plant disease detection using a custom CNN deployed via Edge Impulse
 
-Sanchay Kumar: Embedded Software Development, AI Model Integration, Software Architecture.
+ESP32-CAM for real-time leaf analysis on the edge (no cloud required)
 
-Mohit pal: Power and Battery Management for Long-Duration Field Operation.
+Rocker-bogie suspension inspired by NASA’s Mars Rovers
 
-🛣️ Future Development & Roadmap Due to initial constraints (budget, academic schedule), several ambitious features were deferred. These represent the key areas for future growth:
+Modular sensor suite for soil & environmental monitoring
 
-Soil Nitrogen Sensor Integration: Incorporating a dedicated sensor for soil nitrogen levels to provide deeper fertilization recommendations.
+Web-based dashboard for live telemetry and robot-arm control
 
-Cloud-Based Analytics: Integrating a cloud platform for long-term data storage, deeper agronomic insights, and advanced environmental analytics.
+Record & playback system for automated arm movements
 
-Aerial Data Complement: Developing and integrating a mini agricultural drone for aerial crop mapping to complement Hari's ground-level data.
+Future-ready architecture designed for cloud analytics & autonomous navigation
 
-Autonomous Navigation: Implementing full field path planning and obstacle avoidance for true autonomous operation.
 
-🏆 Project Recognition Accenture Innovation Challenge 2024: Qualified for the Sandbox Round.
+🧠 AI & Embedded Intelligence
+
+HARI uses a Convolutional Neural Network (CNN) deployed on the ESP32-CAM to classify plant diseases directly on-device.
+
+Tools & Platforms:
+
+Edge Impulse → Model training, optimization, and quantization
+
+ESP32-CAM → On-edge inference & imaging
+
+ESP32 DevKit → Main controller + local HTTP server + data aggregator
+
+
+Planned Cloud Integration:
+
+Crop health dashboards
+
+Soil & atmospheric analysis reports
+
+Historical farm analytics
+
+
+
+---
+
+🚜 Mechanical System – Rocker-Bogie Suspension
+
+To ensure stable mobility across farms, mud, pits, and uneven terrains, HARI uses a six-wheel rocker-bogie system, the same mechanism used in NASA’s Curiosity and Perseverance rovers.
+
+Benefits:
+
+✓ Maximum wheel contact
+
+✓ No active suspension required
+
+✓ Excellent obstacle handling
+
+✓ High stability on rough terrain
+
+
+
+---
+
+🔧 Sensors & Data Acquisition
+
+HARI integrates multiple low-cost sensors for real-time agricultural analytics.
+
+Sensor	Purpose
+
+DHT11	Temperature + Humidity
+Rain Sensor	Precipitation detection
+BMP180	Atmospheric pressure + temperature
+Soil Moisture Sensors (x2)	Irrigation analysis
+(Planned) Soil Nitrogen Sensor	Nutrient profiling
+(Planned) Micro-agri Drone	Aerial mapping
+
+
+
+---
+
+📡 System Architecture
+
++---------------------------+
+         |        ESP32 DevKit       |
+         |  - Main Controller        |
+         |  - WiFi Web Server        |
+         |  - Sensor Fusion          |
+         +------------+--------------+
+                      |
+        +-------------+-----------------------+
+        |                                     |
++---------------+                     +------------------+
+| ESP32-CAM     |                     | Sensor Module    |
+| - AI Model    |                     | - BMP180         |
+| - Disease CLS |                     | - Soil Sensors   |
++---------------+                     | - Rain & DHT11   |
+                                      +------------------+
+
+                     +------------------+
+                     | Robot Arm Module |
+                     | - Servo Control  |
+                     | - Record/Replay  |
+                     +------------------+
+
+
+---
+
+📂 Repository Structure
+
+Hari-Robot/
+│
+├── /robot-arm-control/        # ESP32 DevKit robotic arm server + UI
+│   └── hari_arm_control.ino
+│
+├── /sensor-module/            # Soil + BMP180 + moisture web server
+│   └── sensors.ino
+│
+├── /docs/
+│   ├── architecture-diagram.png
+│   ├── suspension-mechanism.png
+│   └── team-photo.jpg
+│
+└── README.md                  # You are here
+
+
+---
+
+🤖 Robot Arm Control Module
+
+This module includes:
+
+4-axis robotic arm (Base, Shoulder, Elbow, Gripper)
+
+Servo control via ESP32 DevKit
+
+Web-based slider interface (HTML + WebSockets)
+
+Record & Playback automation system
+
+
+Code File:
+
+📁 /robot-arm-control/hari_arm_control.ino
+(Your provided code is already integrated here.)
+
+
+---
+
+🌦 Sensor Monitoring Module
+
+This module hosts a live dashboard displaying:
+
+Soil moisture (% + Dry/Medium/Wet)
+
+Atmospheric temperature
+
+Barometric pressure
+
+Controls to fetch sensor data every second
+
+
+Code File:
+
+📁 /sensor-module/sensors.ino
+(Your provided code is already integrated here.)
+
+
+---
+
+🛠 Getting Started
+
+✔ Requirements
+
+ESP32 DevKit
+
+ESP32-CAM
+
+Servo motors (x4)
+
+BMP180 sensor
+
+Soil moisture sensors (x2)
+
+Rain sensor
+
+DHT11
+
+Rocker-bogie chassis
+
+12V Li-ion battery pack
+
+
+
+---
+
+🔌 Setup Instructions
+
+1. Clone the repository
+
+
+
+git clone https://github.com/yourusername/Hari-Robot.git
+
+2. Install Required Libraries
+
+
+
+ESP32Servo
+
+AsyncTCP
+
+ESPAsyncWebServer
+
+SFE_BMP180
+
+WiFi / WebServer
+
+
+3. Upload hari_arm_control.ino
+
+
+
+Controls robot arm
+
+Opens WebSocket UI
+
+
+4. Upload sensors.ino
+
+
+
+Sets up a sensor dashboard
+
+Displays real-time telemetry
+
+
+5. Connect via Wi-Fi
+
+
+
+Check serial monitor for IP address
+
+Open browser → http://<ESP32-IP>/
+
+
+---
+
+🧭 Roadmap
+
+[ ] Full autonomous navigation
+
+[ ] Inter-row path planning
+
+[ ] Cloud-backed agronomic dashboard
+
+[ ] Integration with a drone for aerial imaging
+
+[ ] Solar-powered endurance module
+
+[ ] LORA-based long-range communication
+
+
+
+---
+
+🏆 Achievement
+
+HARI qualified for the Accenture Innovation Challenge 2024 (Sandbox Round)—a testament to the team’s dedication and technical execution.
+
+
+---
+
+🤝 Contributing
+
+Contributions, suggestions, and collaborations are welcome.
+Feel free to open an issue or submit a pull request.
+
+
+Would you like that?
